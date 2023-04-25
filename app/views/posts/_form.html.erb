@@ -22,7 +22,36 @@
     <%= form.file_field :image %>
   </div>
 
+  <%= select_tag :vehicle_type, options_for_select([['All ', 'all'], ['Car', 'car'], ['Boat', 'boat']]), id: 'vehicle-type-select' %>
+
+  <%= check_box_tag :engine, 'engine', false, class: 'car-option' %>
+  <%= label_tag :engine, 'Engine', class: 'car-option' %>
+
+  <%= check_box_tag :home_banner, 'home banner', false, class: 'car-option' %>
+  <%= label_tag :home_banner, 'Home Banner', class: 'car-option' %>
+
+  <%= check_box_tag :motor, 'motor', false, class: 'boat-option' %>
+  <%= label_tag :motor, 'Motor', class: 'boat-option' %>
+
+  <%= check_box_tag :favourite_sale, 'favourite sale', false, class: 'boat-option' %>
+  <%= label_tag :favourite_sale, 'Favourite Sale', class: 'boat-option' %>
+
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<script>
+  $(document).on('click', '#vehicle-type-select', function() {
+    if ($(this).val() == 'car') {
+      $('.boat-option').hide();
+      $('.car-option').show();
+    } else if ($(this).val() == 'boat') {
+      $('.car-option').hide();
+      $('.boat-option').show();
+    } else {
+      $('.car-option, .boat-option').hide();
+    }
+  });
+</script>
